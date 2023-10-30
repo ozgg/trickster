@@ -1,0 +1,17 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "Auth microservice for trickster",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev --poll src/index.ts"
+  },
+  "author": "Maxim Khan-Magomedov",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.8.9",
+    "prisma": "^5.5.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

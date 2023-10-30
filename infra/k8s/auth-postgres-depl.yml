@@ -1,41 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: users-postgres-depl
+  name: auth-postgres-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: users-postgres
+      app: auth-postgres
   template:
     metadata:
       labels:
-        app: users-postgres
+        app: auth-postgres
     spec:
       containers:
-        - name: users-postgres
-          image: postgres:15-alpine
+        - name: auth-postgres
+          image: postgres:16-alpine
           ports:
             - containerPort: 5432
           env:
             - name: POSTGRES_DB
-              value: users
+              value: auth
             - name: POSTGRES_USER
               value: trickster
             - name: POSTGRES_PASSWORD
               value: 3xtrpsql
-#          volumeMounts:
-#            - mountPath: "/var/lib/postgresql/data"
-#              name: "users-pgdata"
-#      volumes:
-#        - hostPath:
-#            path: "/home/docker/pgdata"
-#          name: users-pgdata
+          volumeMounts:
+            - mountPath: "/var/lib/postgresql/data"
+              name: "auth-pgdata"
+      volumes:
+        - hostPath:
+            path: "/home/docker/pgdata"
+          name: auth-pgdata
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: users-postgres-service
+  name: auth-postgres-service
 spec:
   type: ClusterIP
   ports:
